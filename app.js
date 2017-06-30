@@ -1,12 +1,12 @@
 var express = require('express')
-    mongoose = require('mongoose'),
-    mongodb = require("mongodb");;
+    mongoose = require('mongoose');
 
-// var db = mongoose.connect('mongodb://localhost/bookAPI');
+//var db = mongoose.connect('mongodb://127.0.0.1:27017/bookAPI');
+var hockeyDB = mongoose.connect('mongodb://127.0.0.1:27017/hockey');
 
 var Book = require('./models/bookModel');
+var Blog = require('./models/blogModel');
 
-var hockeyDB = mongoose.connect('mongodb://127.0.0.1:27017/hockey');
 // mongoose.connection.on('connection', function(){
 //     console.log("server connected to db");
 // });
@@ -26,19 +26,10 @@ var port = process.env.port || 4000;
      response.send('welcome to my API, so glad you visited');
  });
 
-// app.get("/api/hockey", function(req, res) {
-//     hockeyDb.collection("players").find({}).toArray(function(err, docs) {
-//         if (err) {
-//             handleError(res, err.message, "Failed to get contacts.");
-//         } else {
-//             res.status(200).json(docs);
-//         }
-//     });
-// });
-
 var hockeyRouter = express.Router();
+var bookRouter = express.Router();
 
-hockeyRouter.route('/Players')
+hockeyRouter.route('/players')
     .get(function(req, res){
         // var responseJson = {hi: "This is my hockey player api"};
         // res.json(responseJson);
@@ -50,9 +41,7 @@ hockeyRouter.route('/Players')
         })
     });
 
-var bookRouter = express.Router();
-
-bookRouter.route('/Books')
+bookRouter.route('/books')
     .get(function(request, response){
 
         Book.find(function(err, books){
@@ -67,13 +56,6 @@ bookRouter.route('/Books')
     });
 
 app.use('/api', bookRouter, hockeyRouter);
-//app.use('/api', hockeyRouter);
-
-// Generic error handler used by all endpoints.
-function handleError(res, reason, message, code) {
-    console.log("ERROR: " + reason);
-    res.status(code || 500).json({"error": message});
-}
 
 app.listen(port, function(){
     console.log('node is running gulp is Running on port ' + port);
