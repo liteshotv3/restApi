@@ -1,0 +1,21 @@
+{
+  "name": "bookapi",
+  "version": "1.0.0",
+  "description": "restful api tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "keywords": [
+    "restful"
+  ],
+  "author": "Artem Tolstov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.11.0"
+  }
+}
