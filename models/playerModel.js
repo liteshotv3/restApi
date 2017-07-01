@@ -3,13 +3,16 @@ var mongoose = require('mongoose'),
 
 var playerModel = new Schema(
     {
-        name: {type: String},
-        age: {type: Number},
-        height: {type: String},
-        weight: {type: Number},
         position: {type: String},
-        number: {type: Number},
-        birthplace: {type: String}
+        id: {type: Number},
+        weight: {type: Number},
+        height: {type: String},
+        imageUrl: {type: String},
+        birthplace: {type: String},
+        age: {type: Number},
+        name: {type: String},
+        birthdate: {type: String},
+        number: {type: Number}
     },
     {
         versionKey: false
@@ -17,3 +20,4 @@ var playerModel = new Schema(
 );
 
 module.exports = mongoose.model('player', playerModel);
+
