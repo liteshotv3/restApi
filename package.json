@@ -4,7 +4,7 @@
   "description": "restful api tutorial",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gulp test",
     "start": "gulp"
   },
   "keywords": [
@@ -15,8 +15,15 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1",
     "mongoose": "^4.11.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-env": "^0.4.0",
+    "gulp-mocha": "^4.3.1",
+    "gulp-nodemon": "^2.2.1",
+    "should": "^11.2.1",
+    "sinon": "^2.3.6",
+    "supertest": "^3.0.0"
   }
 }

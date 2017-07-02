@@ -2,8 +2,17 @@ var playerController = function (Player) {
 
     var post = function (req, res) {
         var player = new Player(req.body);
-        player.save();
-        res.status(201).send(player);
+
+        if (!req.body.name) {
+            res.status(400);
+            res.send('name is required');
+        }
+        else {
+            player.save();
+            res.status(201);
+            res.send(player);
+        }
+
     }
 
     var get = function (req, res) {

@@ -3,7 +3,12 @@ var express = require('express')
     bodyParser = require('body-parser');
 
 //Database Connection
-var hockeyDb = mongoose.connect('mongodb://127.0.0.1:27017/hockey');
+var hockeyDb;
+
+if(process.env.ENV == 'Test')
+    hockeyDb = mongoose.connect('mongodb://127.0.0.1:27017/hockey_test');
+else
+    hockeyDb = mongoose.connect('mongodb://127.0.0.1:27017/hockey')
 
 //server stuff
 var app = express();
@@ -26,6 +31,8 @@ app.use('/api/players', hockeyRouter);
 app.listen(port, function(){
     console.log('node is running gulp is Running on port ' + port);
 });
+
+module.exports = app;
 
 
 /*
