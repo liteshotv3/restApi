@@ -25,14 +25,27 @@ var playerController = function (Player) {
         Player.find(query, function (error, players) {
             if (error)
                 res.status(500).send(error);
-            else
-                res.json(players);
+            else {
+                var returnPlayers = [];
+                players.forEach(function(element, index, array){
+                    var newPlayer = element.toJSON();
+                    newPlayer.links = {};
+                    newPlayer.links.self = 'http://' + req.headers.host + '/api/players/' + newPlayer._id;
+                    returnPlayers.push(newPlayer);
+                });
+                res.json(returnPlayers);
+            }
         });
 
     }
 
     var getById = (function (req, res) {
-        res.json(req.player);
+        var returnPlayer = req.player.toJSON();
+
+        returnPlayer.links = {};
+        var newLink = 'http://' + req.headers.host + '/api/players?position=' + returnPlayer.position;
+        returnPlayer.links.FilterByThisPosition = newLink.replace(' ', '%20');
+            res.json(returnPlayer);
     })
 
     var putById = (function (req, res) {
